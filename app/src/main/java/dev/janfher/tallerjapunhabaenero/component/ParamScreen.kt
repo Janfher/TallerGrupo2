@@ -44,9 +44,8 @@ fun ParamScreen(navController: NavHostController, contactName: String) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            Spacer(modifier = Modifier.height(32.dp)) // Espaciado inicial
+            Spacer(modifier = Modifier.height(32.dp))
 
-            // Ícono de persona dentro de un círculo gris
             Box(
                 modifier = Modifier
                     .size(80.dp)
@@ -92,11 +91,12 @@ fun ParamScreen(navController: NavHostController, contactName: String) {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(
+            ElevatedButton(
+                enabled = true,
                 onClick = { navController.navigate("home") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFFC0CB),
-                    contentColor = Color.White
+                    containerColor = Color.Gray.copy(alpha = 0.5f),
+                    contentColor = Color.Black
                 ),
                 modifier = Modifier
                     .padding(vertical = 16.dp)

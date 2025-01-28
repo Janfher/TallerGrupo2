@@ -1,5 +1,3 @@
-package dev.janfher.tallerjapunhabaenero
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import dev.janfher.tallerjapunhabaenero.ItemComponent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,14 +39,17 @@ fun UserList(navController: NavHostController) {
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            listOf(
+
+            val users = listOf(
                 "Luis Perez" to Icons.Default.Edit,
                 "Mario Cajas" to Icons.Default.Edit,
                 "Fernando Arteaga" to Icons.Default.Edit,
                 "Ribaldo Nantip" to Icons.Default.Bathtub,
                 "Jostin Torres" to Icons.Default.Bathtub,
                 "Domenica Torres" to Icons.Default.Bathtub
-            ).forEach { (name, leftIcon) ->
+            )
+
+            users.forEachIndexed { index, (name, icon) ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -55,27 +57,20 @@ fun UserList(navController: NavHostController) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            imageVector = leftIcon,
-                            contentDescription = "Left Icon",
-                            tint = if (leftIcon == Icons.Default.Edit) Color.Green else Color.Black,
-                            modifier = Modifier.size(24.dp)
+                            imageVector = icon,
+                            contentDescription = null,
+                            tint = if (index < 3) Color.Green else Color.Black,
+                            modifier = Modifier.size(32.dp)
                         )
-                        Spacer(modifier = Modifier.width(16.dp))
-                        Text(
-                            text = name,
-                            style = MaterialTheme.typography.bodyLarge
-                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(text = name, style = MaterialTheme.typography.bodyLarge)
                     }
-                    IconButton(onClick = {
-                        navController.navigate("param/${name}")
-                    }) {
+                    IconButton(onClick = { navController.navigate("param/$name") }) {
                         Icon(
                             imageVector = Icons.Default.Call,
-                            contentDescription = "Call Icon",
+                            contentDescription = "Call $name",
                             tint = Color.Black
                         )
                     }
@@ -89,17 +84,17 @@ fun UserList(navController: NavHostController) {
                     .padding(16.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Button(
+                OutlinedButton(
                     onClick = { navController.navigate("home") },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFFFC0CB),
-                        contentColor = Color.White
+                        containerColor = Color.Transparent,
+                        contentColor = Color.Magenta
                     ),
                     modifier = Modifier
                         .padding(vertical = 8.dp)
                         .fillMaxWidth(0.5f)
                 ) {
-                    Text("Regresar")
+                    Text(text = "Regresar")
                 }
             }
         }

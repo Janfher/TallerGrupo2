@@ -84,14 +84,15 @@ fun MenuScreen(navController: NavHostController) {
                     .padding(16.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Button(
+                ElevatedButton(
+                    enabled = true,
                     onClick = { navController.navigate("home") },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFFFC0CB), // Color rosado
-                        contentColor = Color.White
+                        containerColor = Color.Gray.copy(alpha = 0.5f),
+                        contentColor = Color.Black
                     ),
                     modifier = Modifier
-                        .padding(vertical = 8.dp)
+                        .padding(vertical = 16.dp)
                         .fillMaxWidth(0.5f)
                 ) {
                     Text("Regresar")
